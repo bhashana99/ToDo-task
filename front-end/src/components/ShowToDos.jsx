@@ -34,7 +34,7 @@ export default function ShowToDos() {
 
        
         <div className="flex flex-col">
-          <h3>{todo.title}</h3>
+          <h3 className="text-xl font-bold">{todo.title}</h3>
           <p>{todo.description}</p>
         </div>
         <div className="flex flex-row gap-5">

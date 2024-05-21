@@ -17,3 +17,12 @@ export const getTodos = async (req, res) => {
         console.log(error);
     }
 }
+
+export const deleteTodo = async (req, res) => {
+    try {
+        const todo = await Todo.findByIdAndDelete(req.params.id);
+        return res.status(200).json({ message: "Todo deleted!" });
+    } catch (error) {
+        console.log(error);
+    }
+}
