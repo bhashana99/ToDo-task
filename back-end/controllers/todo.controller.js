@@ -59,3 +59,12 @@ export const markAsComplete = async (req, res) => {
     console.log(error);
   }
 };
+
+export const filterTodos = async (req, res) => {
+  try {
+    const todos = await Todo.find({ complete: req.params.complete });
+    return res.status(200).json(todos);
+  } catch (error) {
+    console.log(error);
+  }
+}
