@@ -23,10 +23,10 @@ app.use(express.json());
 
 app.use("/api/todo", todoRoute);
 
-app.use(express.static(path.join(__dirname, 'front-end')));
+app.use(express.static(path.join(__dirname, '/front-end/dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'front-end', 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(3000, () => {
