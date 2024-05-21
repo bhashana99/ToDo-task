@@ -76,7 +76,7 @@ export default function ShowToDos({ filter }) {
           className="mt-5 border rounded-lg p-3 flex flex-col md:flex-row justify-between items-center gap-4 "
         >
           <div className="flex flex-col">
-            <h3 className={`text-xl font-bold ${todo.complete ? "line-through" : "no-underline"}`}>{todo.title}</h3>
+            <h3 className={`text-xl font-bold text-center md:text-start ${todo.complete ? "line-through" : "no-underline"}`}>{todo.title}</h3>
             <p >{todo.description}</p>
           </div>
           <div className="flex flex-row gap-5 items-center">
