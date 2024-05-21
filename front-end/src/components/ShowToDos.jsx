@@ -25,6 +25,24 @@ export default function ShowToDos() {
     fetchTodos();
   }, []);
 
+  const handleDeleteTodo = async (todoId) => {
+    try {
+      const res = await fetch(`/api/todo/delete-todo/${todoId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if(data.success === false){
+        console.log(data.message);
+        return;
+      }
+      setLoading(false);
+      window.location.reload();
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="mt-5 ">
       <h1 className="underline">Uncompleted to-do s</h1>
@@ -39,7 +57,7 @@ export default function ShowToDos() {
         </div>
         <div className="flex flex-row gap-5">
           <FaEdit className="text-green-700" />
-          <FaTrash className="text-red-700" />
+          <FaTrash onClick={()=>{handleDeleteTodo(todo._id)}} className="text-red-700" />
         </div>
       </div>
        ))}
