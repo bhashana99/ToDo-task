@@ -69,7 +69,7 @@ export default function ShowToDos({ filter }) {
 
   return (
     <div className="mt-5 ">
-      <h1 className="underline">Uncompleted to-do s</h1>
+      
       {todos.map((todo) => (
         <div
           key={todo._id}
