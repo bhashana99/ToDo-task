@@ -6,9 +6,16 @@ import ShowToDos from "../components/ShowToDos";
 
 export default function ToDo() {
   const [showForm, setShowForm] = useState(false);
+  const [filter, setFilter] = useState("all");
+
   const toggleForm = () => {
     setShowForm(!showForm);
   };
+
+  const handleFilter = (e) => {
+    setFilter(e.target.value); 
+  };
+
   return (
     <div className="bg-slate-700 h-screen">
       <div className="max-w-4xl mx-auto p-10 ">
@@ -31,10 +38,19 @@ export default function ToDo() {
               </div>
             )}
           </div>
+          <div className="mt-5 flex flex-row gap-5">
+            
+            <h2>Filter : </h2>
+            <select onChange={handleFilter} value={filter} >
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="incompleted">Incompleted</option>
+            </select>
+          </div>
           {showForm && (
             <ToDoForm toggleForm={toggleForm}  />
           )}
-          <ShowToDos />
+          <ShowToDos filter={filter} />
         </div>
       </div>
     </div>

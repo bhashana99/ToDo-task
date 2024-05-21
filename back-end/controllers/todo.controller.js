@@ -11,7 +11,17 @@ export const createNewTodo = async (req, res) => {
 
 export const getTodos = async (req, res) => {
   try {
-    const todos = await Todo.find();
+    const { filter } = req.query;
+    let todos;
+
+    if (filter === "completed") {
+      todos = await Todo.find({ complete: true });
+    } else if (filter === "incompleted") {
+      todos = await Todo.find({ complete: false });
+    } else {
+      todos = await Todo.find();
+    }
+
     return res.status(200).json(todos);
   } catch (error) {
     console.log(error);
@@ -60,11 +70,3 @@ export const markAsComplete = async (req, res) => {
   }
 };
 
-export const filterTodos = async (req, res) => {
-  try {
-    const todos = await Todo.find({ complete: req.params.complete });
-    return res.status(200).json(todos);
-  } catch (error) {
-    console.log(error);
-  }
-}

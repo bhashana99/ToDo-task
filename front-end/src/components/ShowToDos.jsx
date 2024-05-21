@@ -2,16 +2,22 @@ import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export default function ShowToDos() {
+export default function ShowToDos({ filter }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [todos, setTodos] = useState([]);
+  
 
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await fetch("/api/todo/get-todos");
+        let url = "/api/todo/get-todos";
+        if (filter !== "all") {
+          url += `?filter=${filter}`;
+        }
+        const res = await fetch(url);
         const data = await res.json();
+
         if (data.success === false) {
           setError(data.message);
         } else {
@@ -24,7 +30,7 @@ export default function ShowToDos() {
     };
 
     fetchTodos();
-  }, []);
+  }, [filter]);
 
   const handleDeleteTodo = async (todoId) => {
     try {
