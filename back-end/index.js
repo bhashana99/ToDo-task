@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import todoRoute from "./routes/todo.route.js";
 import path from "path";
 
-
 dotenv.config();
 
 mongoose
@@ -22,13 +21,12 @@ const app = express();
 
 app.use(express.json());
 
-
 app.use("/api/todo", todoRoute);
 
-app.use(express.static(path.join(__dirname, "/front-end/dist")));
+app.use(express.static(path.join(__dirname, 'front-end')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'front-end', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'front-end', 'index.html'));
 });
 
 app.listen(3000, () => {
