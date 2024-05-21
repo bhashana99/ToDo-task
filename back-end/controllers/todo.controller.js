@@ -35,3 +35,19 @@ export const fetchTodo = async (req, res) => {
         console.log(error);
     }
 }
+
+export const updateTodo = async (req, res) => {
+    const todo = await Todo.findById(req.params.id);
+    
+    try {
+      const updateTodo = await Todo.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      res.status(200).json(updateTodo);
+    } catch (error) {
+      console.log(error);
+    }
+
+}

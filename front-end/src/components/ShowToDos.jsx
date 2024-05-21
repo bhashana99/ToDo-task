@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function ShowToDos() {
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,7 @@ export default function ShowToDos() {
         method: "DELETE",
       });
       const data = await res.json();
-      if(data.success === false){
+      if (data.success === false) {
         console.log(data.message);
         return;
       }
@@ -46,21 +47,28 @@ export default function ShowToDos() {
   return (
     <div className="mt-5 ">
       <h1 className="underline">Uncompleted to-do s</h1>
-{todos.map((todo) => (
-    
-      <div key={todo._id} className="mt-5 border rounded-lg p-3 flex justify-between items-center gap-4 ">
-
-       
-        <div className="flex flex-col">
-          <h3 className="text-xl font-bold">{todo.title}</h3>
-          <p>{todo.description}</p>
+      {todos.map((todo) => (
+        <div
+          key={todo._id}
+          className="mt-5 border rounded-lg p-3 flex justify-between items-center gap-4 "
+        >
+          <div className="flex flex-col">
+            <h3 className="text-xl font-bold">{todo.title}</h3>
+            <p>{todo.description}</p>
+          </div>
+          <div className="flex flex-row gap-5">
+            <Link to={`/edit-todo/${todo._id}`}>
+              <FaEdit className="text-green-700" />
+            </Link>
+            <FaTrash
+              onClick={() => {
+                handleDeleteTodo(todo._id);
+              }}
+              className="text-red-700"
+            />
+          </div>
         </div>
-        <div className="flex flex-row gap-5">
-          <FaEdit className="text-green-700" />
-          <FaTrash onClick={()=>{handleDeleteTodo(todo._id)}} className="text-red-700" />
-        </div>
-      </div>
-       ))}
+      ))}
     </div>
   );
 }
