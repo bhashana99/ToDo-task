@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 import ToDoForm from "../components/ToDoForm";
+import ShowToDos from "../components/ShowToDos";
 
 export default function ToDo() {
   const [showForm, setShowForm] = useState(false);
@@ -33,6 +34,7 @@ export default function ToDo() {
           {showForm && (
             <ToDoForm toggleForm={toggleForm}  />
           )}
+          <ShowToDos />
         </div>
       </div>
     </div>

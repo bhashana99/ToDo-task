@@ -38,6 +38,7 @@ export default function ToDoForm({ toggleForm }) {
         setError(data.message);
       } else {
         toggleForm();
+        window.location.reload();
       }
     } catch (error) {
       setError(error.message);
