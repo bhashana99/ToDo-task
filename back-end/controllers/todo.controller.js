@@ -26,3 +26,12 @@ export const deleteTodo = async (req, res) => {
         console.log(error);
     }
 }
+
+export const fetchTodo = async (req, res) => {
+    try {
+        const todo = await Todo.findById(req.params.id);
+        return res.status(200).json(todo);
+    } catch (error) {
+        console.log(error);
+    }
+}
