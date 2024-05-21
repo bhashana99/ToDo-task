@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ToDo from "./pages/ToDo";
 
 export default function App() {
   return (
-    <div className='text-red-400'>App</div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ToDo />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
